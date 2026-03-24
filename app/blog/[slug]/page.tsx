@@ -53,11 +53,11 @@ export default function BlogDetailPage({ params }: { params: Promise<{ slug: str
   if (notFound || !post) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center gap-4 px-4">
-        <h1 className="text-2xl font-bold text-gray-900">Không tìm thấy bài viết</h1>
-        <p className="text-gray-500">Bài viết này có thể đã bị thay đổi dạng hoặc xóa.</p>
+        <h1 className="text-2xl font-bold text-gray-900">Article Not Found</h1>
+        <p className="text-gray-500">This article may have been moved or deleted.</p>
         <Link href="/blog">
           <Button variant="outline" className="flex items-center gap-2">
-            <ArrowLeft className="w-4 h-4" /> Quay lại Cẩm Nang
+            <ArrowLeft className="w-4 h-4" /> Back to Blog
           </Button>
         </Link>
       </div>
@@ -70,25 +70,15 @@ export default function BlogDetailPage({ params }: { params: Promise<{ slug: str
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-          <Link href="/" className="text-2xl font-bold text-gray-900">
-            Thuê Xe Đà Nẵng
-          </Link>
-          <a href={`https://wa.me/${whatsapp}`} target="_blank" rel="noopener noreferrer">
-            <Button className="bg-orange-500 hover:bg-orange-600 text-white">Liên Hệ</Button>
-          </a>
-        </div>
-      </header>
+
 
       {/* Main Content */}
       <main className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
         {/* Breadcrumbs */}
         <nav className="flex items-center gap-2 mb-8 text-sm text-gray-600">
-          <Link href="/" className="hover:text-gray-900 transition">Trang Chủ</Link>
+          <Link href="/" className="hover:text-gray-900 transition">Home</Link>
           <ChevronRight className="w-4 h-4" />
-          <Link href="/blog" className="hover:text-gray-900 transition">Cẩm Nang Du Lịch</Link>
+          <Link href="/blog" className="hover:text-gray-900 transition">Travel Guide</Link>
           <ChevronRight className="w-4 h-4" />
           <span className="text-gray-900 font-medium line-clamp-1">{post.title}</span>
         </nav>
@@ -141,13 +131,13 @@ export default function BlogDetailPage({ params }: { params: Promise<{ slug: str
 
           {/* In-Article CTA */}
           <div className="bg-gradient-to-r from-orange-50 to-amber-50 border-l-4 border-orange-500 rounded-lg p-8 my-12">
-            <h3 className="text-2xl font-bold text-gray-900 mb-3">Sẵn sàng gọi xe cho chuyến đi của bạn?</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-3">Ready to book your transfer?</h3>
             <p className="text-gray-700 mb-6">
-              Thuê xe riêng chất lượng cao, tài xế bản địa uy tín. Bảng giá minh bạch chỉ từ <span className="font-bold text-orange-500">$25</span>.
+              High-quality private cars and local drivers. Transparent pricing starting from <span className="font-bold text-orange-500">$25</span>.
             </p>
             <Link href="/">
               <Button className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 text-lg">
-                Xem Bảng Giá Xe Đưa Đón
+                View Transfer Prices
               </Button>
             </Link>
           </div>
@@ -155,7 +145,7 @@ export default function BlogDetailPage({ params }: { params: Promise<{ slug: str
 
         {/* Share */}
         <div className="border-t border-gray-200 pt-8 mt-4">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Chia sẻ bài viết này</h3>
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">Share this article</h3>
           <div className="flex gap-3 flex-wrap">
             <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(siteUrl)}`}
               target="_blank" rel="noopener noreferrer"
@@ -178,7 +168,7 @@ export default function BlogDetailPage({ params }: { params: Promise<{ slug: str
         {/* Back to Blog */}
         <div className="mt-12 pt-8 border-t border-gray-200">
           <Link href="/blog" className="inline-flex items-center gap-2 text-orange-500 hover:text-orange-600 font-medium transition">
-            <ArrowLeft className="w-4 h-4" /> Quay lại Danh Sách Bài Viết Cẩm Nang
+            <ArrowLeft className="w-4 h-4" /> Back to all articles
           </Link>
         </div>
       </main>
@@ -186,10 +176,10 @@ export default function BlogDetailPage({ params }: { params: Promise<{ slug: str
       {/* Footer */}
       <footer className="bg-gray-900 text-gray-300 py-10 mt-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-sm">© 2026 Thuê Xe Đà Nẵng. Bản quyền đã được bảo lưu.</p>
+          <p className="text-sm">© 2026 DaNang Private Transfer. All rights reserved.</p>
           <a href={`https://wa.me/${whatsapp}`} target="_blank" rel="noopener noreferrer"
             className="flex items-center gap-2 hover:text-white transition text-sm">
-            <MessageCircle className="w-4 h-4" /> Hỗ trợ CSKH qua Zalo/WhatsApp
+            <MessageCircle className="w-4 h-4" /> Support via WhatsApp/Zalo
           </a>
         </div>
       </footer>

@@ -39,7 +39,7 @@ export default async function DashboardPage() {
             <Home className="w-5 h-5" />
           </Link>
           <span className="text-gray-300">/</span>
-          <h1 className="text-xl font-bold text-gray-900">Quản Lý Chuyến Đi</h1>
+          <h1 className="text-xl font-bold text-gray-900">Manage Bookings</h1>
         </div>
       </header>
 
@@ -54,19 +54,19 @@ export default async function DashboardPage() {
               </div>
             )}
             <div>
-              <h2 className="text-2xl font-bold text-gray-900">Xin chào, {session.user.name}</h2>
+              <h2 className="text-2xl font-bold text-gray-900">Welcome, {session.user.name}</h2>
               <p className="text-gray-600">{session.user.email || (session.user as any).whatsapp}</p>
             </div>
           </div>
         </div>
 
-        <h3 className="text-xl font-bold text-gray-900 mb-6">Lịch Sử Đặt Xe Của Bạn ({bookings.length})</h3>
+        <h3 className="text-xl font-bold text-gray-900 mb-6">Your Booking History ({bookings.length})</h3>
 
         {bookings.length === 0 ? (
           <div className="bg-white rounded-xl p-12 text-center border border-gray-200 shadow-sm">
-            <p className="text-gray-500 mb-6">Bạn chưa có chuyến xe nào được hệ thống ghi nhận dưới thông tin này ({session.user.email || (session.user as any).whatsapp}).</p>
+            <p className="text-gray-500 mb-6">No bookings recorded under this information ({session.user.email || (session.user as any).whatsapp}).</p>
             <Link href="/" className="inline-block bg-orange-500 hover:bg-orange-600 text-white font-medium py-3 px-8 rounded-lg transition">
-              Đặt Chuyến Xe Đầu Tiên
+              Book Your First Transfer
             </Link>
           </div>
         ) : (
@@ -84,17 +84,17 @@ export default async function DashboardPage() {
               };
 
               const statusText: Record<string, string> = {
-                'pending': 'Chờ Xác Nhận',
-                'confirmed': 'Đã Xác Nhận',
-                'completed': 'Hoàn Thành',
-                'cancelled': 'Đã Hủy',
+                'pending': 'Pending',
+                'confirmed': 'Confirmed',
+                'completed': 'Completed',
+                'cancelled': 'Cancelled',
               };
 
               return (
                 <div key={booking._id.toString()} className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition flex flex-col sm:flex-row gap-6">
                   <div className="flex-1">
                     <div className="flex items-center justify-between mb-2">
-                      <span className="text-xs font-semibold text-gray-500">Mã Số: #{booking.bookingCode}</span>
+                      <span className="text-xs font-semibold text-gray-500">Booking ID: #{booking.bookingCode}</span>
                       <span className={`text-xs font-medium px-2.5 py-1 rounded-full ${statusColors[booking.status] || 'bg-gray-100 text-gray-800'}`}>
                         {statusText[booking.status] || booking.status}
                       </span>
@@ -106,8 +106,8 @@ export default async function DashboardPage() {
                       <div className="flex items-start gap-2">
                         <MapPin className="w-4 h-4 mt-0.5 text-orange-500 flex-shrink-0" />
                         <div>
-                          <p><span className="font-medium text-gray-700">Đón:</span> {booking.pickupAddress}</p>
-                          <p className="mt-1"><span className="font-medium text-gray-700">Đến:</span> {booking.dropoffAddress}</p>
+                          <p><span className="font-medium text-gray-700">Pickup:</span> {booking.pickupAddress}</p>
+                          <p className="mt-1"><span className="font-medium text-gray-700">Dropoff:</span> {booking.dropoffAddress}</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-2 mt-2">
@@ -120,14 +120,14 @@ export default async function DashboardPage() {
                   </div>
 
                   <div className="sm:w-48 sm:border-l border-t sm:border-t-0 border-gray-200 sm:pl-6 pt-4 sm:pt-0 flex flex-col justify-end">
-                    <p className="text-sm text-gray-500 mb-1">Thanh toán (Dự kiến)</p>
+                    <p className="text-sm text-gray-500 mb-1">Expected Payment</p>
                     <p className="text-2xl font-bold text-gray-900 hidden sm:block">
                       {booking.totalPriceDisplay} {booking.currency}
                     </p>
                     <p className="text-lg font-bold text-gray-900 sm:hidden">
                       {booking.totalPriceDisplay} {booking.currency}
                     </p>
-                    <p className="text-xs text-gray-500 mt-2">100% Giá Cố Định</p>
+                    <p className="text-xs text-gray-500 mt-2">100% Fixed Price</p>
                   </div>
                 </div>
               );

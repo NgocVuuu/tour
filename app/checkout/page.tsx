@@ -106,8 +106,8 @@ function CheckoutContent() {
     <div className="min-h-screen bg-gray-50">
       <header className="sticky top-0 z-40 bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <h1 className="text-2xl font-bold text-gray-900">Thanh Toán An Toàn</h1>
-          <p className="text-sm text-gray-600 mt-1">Hoàn tất thủ tục đặt chuyến xe riêng tư của bạn tại Miền Trung</p>
+          <h1 className="text-2xl font-bold text-gray-900">Secure Checkout</h1>
+          <p className="text-sm text-gray-600 mt-1">Complete your private transfer booking in Central Vietnam</p>
         </div>
       </header>
 
@@ -118,67 +118,67 @@ function CheckoutContent() {
             <div className="lg:col-span-2 space-y-6">
               {/* Contact Details */}
               <div className="bg-white rounded-lg p-6 border border-gray-200">
-                <h2 className="text-xl font-semibold text-gray-900 mb-6">Thông Tin Liên Hệ</h2>
+                <h2 className="text-xl font-semibold text-gray-900 mb-6">Contact Information</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Tên *</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">First Name *</label>
                     <input type="text" required value={firstName} onChange={(e) => setFirstName(e.target.value)}
-                      placeholder="Trần Văn"
+                      placeholder="John"
                       className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500" />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Họ *</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Last Name *</label>
                     <input type="text" required value={lastName} onChange={(e) => setLastName(e.target.value)}
-                      placeholder="Hùng"
+                      placeholder="Doe"
                       className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500" />
                   </div>
                 </div>
                 <div className="mb-4">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Địa Chỉ Email *</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Email Address *</label>
                   <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)}
-                    placeholder="khachhang@example.com"
+                    placeholder="email@example.com"
                     className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">SĐT / Zalo / WhatsApp *</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Phone / WhatsApp / Zalo *</label>
                   <input type="tel" required value={whatsapp} onChange={(e) => setWhatsapp(e.target.value)}
-                    placeholder="0905 123 456"
+                    placeholder="+84 905 123 456"
                     className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500" />
                 </div>
               </div>
 
               {/* Transfer Details */}
               <div className="bg-white rounded-lg p-6 border border-gray-200">
-                <h2 className="text-xl font-semibold text-gray-900 mb-6">Thông Tin Chuyến Đi</h2>
+                <h2 className="text-xl font-semibold text-gray-900 mb-6">Transfer Details</h2>
                 <div className="mb-4">
                   <label className="block text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
-                    <MapPin className="w-4 h-4 text-orange-500" /> Địa chỉ đón khách (hoặc tên khách sạn) *
+                    <MapPin className="w-4 h-4 text-orange-500" /> Pickup Address (or Hotel Name) *
                   </label>
                   <input type="text" required value={pickup} onChange={(e) => setPickup(e.target.value)}
-                    placeholder="VD: Sân Bay Quốc Tế Đà Nẵng (DAD)"
+                    placeholder="Ex: Da Nang International Airport (DAD)"
                     className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500" />
                 </div>
                 <div className="mb-4">
                   <label className="block text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
-                    <MapPin className="w-4 h-4 text-orange-500" /> Địa chỉ trả khách (hoặc tên khách sạn) *
+                    <MapPin className="w-4 h-4 text-orange-500" /> Dropoff Address (or Hotel Name) *
                   </label>
                   <input type="text" required value={dropoff} onChange={(e) => setDropoff(e.target.value)}
-                    placeholder="VD: Phố Cổ Hội An"
+                    placeholder="Ex: Hoi An Ancient Town"
                     className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500" />
                 </div>
                 <div className="mb-4">
                   <label className="block text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
-                    <Plane className="w-4 h-4 text-orange-500" /> Mã Chuyến Bay
-                    <span className="text-xs text-gray-500 font-normal">(Không bắt buộc)</span>
+                    <Plane className="w-4 h-4 text-orange-500" /> Flight Number
+                    <span className="text-xs text-gray-500 font-normal">(Optional)</span>
                   </label>
                   <input type="text" value={flightNumber} onChange={(e) => setFlightNumber(e.target.value)}
-                    placeholder="VD: VJ123"
+                    placeholder="Ex: VN123"
                     className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Yêu Cầu Đặc Biệt / Ghi Chú Riêng</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Special Requests / Notes</label>
                   <textarea value={notes} onChange={(e) => setNotes(e.target.value)}
-                    placeholder="Ví dụ: cần thêm ghế trẻ em, xe đi êm cho người say xe..."
+                    placeholder="Example: Need a baby seat, please drive carefully..."
                     rows={3}
                     className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 resize-none" />
                 </div>
@@ -188,43 +188,45 @@ function CheckoutContent() {
             {/* Right — Order Summary */}
             <div className="lg:col-span-1">
               <div className="sticky top-20 bg-white rounded-lg p-6 border border-gray-200 shadow-md">
-                <h2 className="text-lg font-semibold text-gray-900 mb-6">Tóm Tắt Đơn Hàng</h2>
+                <h2 className="text-lg font-semibold text-gray-900 mb-6">Order Summary</h2>
 
                 <div className="space-y-4 mb-6 text-sm">
                   <div>
-                    <p className="text-xs text-gray-500 uppercase tracking-wide font-medium">Tuyến Xe</p>
+                    <p className="text-xs text-gray-500 uppercase tracking-wide font-medium">Route</p>
                     <p className="font-medium text-gray-900">{routeName}</p>
                   </div>
                   {dateParam && timeParam && (
                     <div>
-                      <p className="text-xs text-gray-500 uppercase tracking-wide font-medium">Ngày & Giờ</p>
+                      <p className="text-xs text-gray-500 uppercase tracking-wide font-medium">Date & Time</p>
                       <p className="font-medium text-gray-900">{dateParam} — {timeParam}</p>
                     </div>
                   )}
                   <div>
-                    <p className="text-xs text-gray-500 uppercase tracking-wide font-medium">Hành Khách</p>
-                    <p className="font-medium text-gray-900">{paxParam} Hành Khách</p>
+                    <p className="text-xs text-gray-500 uppercase tracking-wide font-medium">Passengers</p>
+                    <p className="font-medium text-gray-900">{paxParam} Passengers</p>
                   </div>
                   <div>
-                    <p className="text-xs text-gray-500 uppercase tracking-wide font-medium">Phương Tiện</p>
+                    <p className="text-xs text-gray-500 uppercase tracking-wide font-medium">Vehicles</p>
                     <p className="font-medium text-gray-900">
                       <Users className="w-4 h-4 inline mr-1" />
-                      {carsRequired} Xe Riêng Cao Cấp (Tối đa 3 khách/xe)
+                      {carsRequired} Premium Private Car(s) (Max 3 pax/car)
                     </p>
                   </div>
                 </div>
 
                 <div className="border-t border-gray-200 py-4 mb-6">
-                  <p className="text-xs text-gray-500 uppercase tracking-wide font-medium mb-1">Tổng Thanh Toán</p>
-                  <p className="text-2xl font-bold text-gray-900">
-                    {routeId ? 'Tính toán sau khi xác nhận' : '—'}
+                  <p className="text-xs text-gray-500 uppercase tracking-wide font-medium mb-1">Total Amount</p>
+                  <p className={`text-2xl font-bold ${routeId === 'custom' ? 'text-orange-500' : 'text-gray-900'}`}>
+                    {routeId === 'custom' ? 'Quote Request' : (routeId ? 'Calculated after confirmation' : '—')}
                   </p>
-                  <p className="text-xs text-gray-500 mt-1">Hệ thống sẽ xác nhận giá cuối cùng sau khi đặt xe</p>
+                  <p className="text-xs text-gray-500 mt-1">
+                    {routeId === 'custom' ? 'Customer Support will contact you with the best price' : 'The system will confirm the final price after booking'}
+                  </p>
                 </div>
 
                 {/* Payment Method */}
                 <div className="mb-6">
-                  <h3 className="text-sm font-semibold text-gray-900 mb-4">Phương Thức Thanh Toán</h3>
+                  <h3 className="text-sm font-semibold text-gray-900 mb-4">Payment Method</h3>
                   <div className="space-y-3">
                     {(['payoneer', 'cash'] as const).map((method) => (
                       <div
@@ -237,10 +239,10 @@ function CheckoutContent() {
                             onChange={() => setPaymentMethod(method)} className="mt-1" />
                           <div>
                             <p className="text-sm font-medium text-gray-900">
-                              {method === 'payoneer' ? '💳 Chuyển Khoản Ngân Hàng / Payoneer' : '💵 Trả Tiền Mặt Cho Tài Xế'}
+                              {method === 'payoneer' ? '💳 Bank Transfer / Payoneer' : '💵 Cash to Driver'}
                             </p>
                             <p className="text-xs text-gray-600 mt-1">
-                              {method === 'payoneer' ? 'Bộ phận CSKH sẽ gửi thông tin thanh toán qua Zalo/WhatsApp' : 'Thanh toán linh hoạt bằng Tiền Mặt (VNĐ hoặc USD) sau khi hoàn thành chuyến xe'}
+                              {method === 'payoneer' ? 'Customer support will send payment info via WhatsApp/Zalo' : 'Pay flexibly in Cash (VND or USD) after the trip'}
                             </p>
                           </div>
                         </div>
@@ -263,14 +265,14 @@ function CheckoutContent() {
                   {loading ? (
                     <span className="flex items-center justify-center gap-2">
                       <span className="animate-spin w-4 h-4 border-2 border-white border-t-transparent rounded-full" />
-                      Đang Xử Lý...
+                      Processing...
                     </span>
-                  ) : 'Xác Nhận Đặt Xe →'}
+                  ) : 'Confirm Booking →'}
                 </Button>
 
                 <div className="flex items-center justify-center gap-2 text-xs text-gray-600">
                   <Lock className="w-4 h-4 text-gray-400" />
-                  <span>Hệ thống bảo mật. Dữ liệu của bạn được mã hóa an toàn.</span>
+                  <span>Secure system. Your data is safely encrypted.</span>
                 </div>
               </div>
             </div>

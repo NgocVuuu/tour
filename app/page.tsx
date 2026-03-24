@@ -85,51 +85,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-          <Link href="/" className="text-2xl font-bold text-gray-900">
-            DaNang Private Transfer
-          </Link>
-          <div className="flex items-center gap-4">
-            <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-gray-600">
-              <Link href="/routes" className="hover:text-orange-500 transition">Bảng Giá</Link>
-              <Link href="/blog" className="hover:text-orange-500 transition">Cẩm Nang</Link>
-            </nav>
-            <Select value={currency} onValueChange={(val) => setCurrency(val as Currency)}>
-              <SelectTrigger className="w-[95px] px-3 py-2 border border-gray-300 rounded-lg text-sm bg-white text-gray-700 hover:border-orange-400 hover:bg-orange-50 hover:text-orange-600 cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all duration-200">
-                <SelectValue placeholder="Tiền tệ" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="VND">VND (₫)</SelectItem>
-                <SelectItem value="USD">USD ($)</SelectItem>
-                <SelectItem value="EUR">EUR (€)</SelectItem>
-                <SelectItem value="AUD">AUD (A$)</SelectItem>
-              </SelectContent>
-            </Select>
-            <HeaderAuth />
-            <a
-              href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '84905555555'}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group"
-            >
-              <button className="p-2 bg-gray-50 border border-transparent hover:border-orange-200 hover:bg-orange-50 rounded-lg transition-all duration-200 hover:scale-105 hover:shadow-sm">
-                <MessageCircle className="w-5 h-5 text-gray-700 group-hover:text-orange-500 transition-colors" />
-              </button>
-            </a>
-            <a
-              href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '84905555555'}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button className="bg-orange-500 hover:bg-orange-600 text-white hover:scale-105 hover:shadow-lg transition-all duration-200 font-semibold">
-                Contact
-              </Button>
-            </a>
-          </div>
-        </div>
-      </header>
+
 
       {/* Hero Section */}
       <section className="relative h-96 sm:h-[500px] lg:h-[600px] overflow-hidden">
@@ -144,10 +100,10 @@ export default function Home() {
 
         <div className="relative h-full flex flex-col items-center justify-center text-white px-4">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-center mb-4 text-balance">
-            Xe Ghép & Thuê Xe Đà Nẵng
+            Da Nang Private Transfers & Tours
           </h1>
           <p className="text-lg sm:text-xl text-center max-w-2xl text-gray-100">
-            Tận hưởng chuyến đi trọn vẹn, tài xế thân thiện, xe 100% riêng tư
+            Enjoy a perfect journey with friendly drivers and 100% private cars.
           </p>
         </div>
 
@@ -158,12 +114,12 @@ export default function Home() {
         <div className="bg-white rounded-xl shadow-2xl p-6 sm:p-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
             <div className="relative">
-              <label className="block text-sm font-medium text-gray-700 mb-2">Điểm Đón</label>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Pickup Location</label>
               <div className="flex items-center border border-gray-300 rounded-lg px-3 py-2 focus-within:ring-2 focus-within:ring-orange-500">
                 <MapPin className="w-4 h-4 text-gray-400 mr-2 flex-shrink-0" />
                 <input
                   type="text"
-                  placeholder="VD: Sân bay Đà Nẵng"
+                  placeholder="Ex: Da Nang Airport"
                   value={pickup}
                   onChange={(e) => setPickup(e.target.value)}
                   className="flex-1 outline-none text-sm"
@@ -172,12 +128,12 @@ export default function Home() {
             </div>
 
             <div className="relative">
-              <label className="block text-sm font-medium text-gray-700 mb-2">Điểm Đến</label>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Dropoff Location</label>
               <div className="flex items-center border border-gray-300 rounded-lg px-3 py-2 focus-within:ring-2 focus-within:ring-orange-500">
                 <MapPin className="w-4 h-4 text-gray-400 mr-2 flex-shrink-0" />
                 <input
                   type="text"
-                  placeholder="VD: Hội An"
+                  placeholder="Ex: Hoi An"
                   value={dropoff}
                   onChange={(e) => setDropoff(e.target.value)}
                   className="flex-1 outline-none text-sm"
@@ -186,7 +142,7 @@ export default function Home() {
             </div>
 
             <div className="relative">
-              <label className="block text-sm font-medium text-gray-700 mb-2">Ngày & Giờ</label>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Date & Time</label>
               <div 
                 className="flex items-center border border-gray-300 rounded-lg px-3 py-2 focus-within:ring-2 focus-within:ring-orange-500 bg-white hover:border-orange-400 transition-colors cursor-pointer"
                 onClick={(e) => {
@@ -210,18 +166,18 @@ export default function Home() {
             </div>
 
             <div className="relative flex flex-col justify-end">
-              <label className="block text-sm font-medium text-gray-700 mb-2">Số Khách</label>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Passengers</label>
               <Select value={passengers} onValueChange={setPassengers}>
                 <SelectTrigger className="w-full h-[38px] border border-gray-300 rounded-lg px-3 focus:ring-2 focus:ring-orange-500 bg-white hover:border-orange-400 transition-colors">
                   <div className="flex items-center gap-2 text-gray-700">
                     <Users className="w-4 h-4 text-gray-400 flex-shrink-0" />
-                    <SelectValue placeholder="Số Khách" />
+                    <SelectValue placeholder="Passengers" />
                   </div>
                 </SelectTrigger>
                 <SelectContent>
                   {[1,2,3,4,5,6,7,8,9].map(n => (
                     <SelectItem key={n} value={n.toString()}>
-                      {n} Lượt Khách {n>3?`(${Math.ceil(n/3)} xe)`:''}
+                      {n} Passengers {n>3?`(${Math.ceil(n/3)} cars)`:''}
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -229,9 +185,9 @@ export default function Home() {
             </div>
 
             <div className="flex flex-col justify-end">
-              <Link href={`/routes/danang-airport-to-hoi-an?pickup=${encodeURIComponent(pickup)}&dropoff=${encodeURIComponent(dropoff)}&date=${encodeURIComponent(dateTime)}&pax=${passengers}`}>
+              <Link href={`/routes?pickup=${encodeURIComponent(pickup)}&dropoff=${encodeURIComponent(dropoff)}&date=${encodeURIComponent(dateTime)}&pax=${passengers}`}>
                 <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 h-auto">
-                  Tìm Chuyến & Đặt Xe
+                  Search & Book
                 </Button>
               </Link>
             </div>
@@ -247,22 +203,22 @@ export default function Home() {
               <div className="flex justify-center mb-4">
                 <CheckCircle className="w-12 h-12 text-orange-500" />
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Hủy Chuyến Miễn Phí</h3>
-              <p className="text-gray-600 text-sm">Bạn có thể hủy xe trước 24 tiếng và được hoàn tiền 100% không giới hạn.</p>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Free Cancellation</h3>
+              <p className="text-gray-600 text-sm">Cancel up to 24 hours in advance for a full refund.</p>
             </div>
             <div className="text-center">
               <div className="flex justify-center mb-4">
                 <DollarSign className="w-12 h-12 text-orange-500" />
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Giá Cố Định & Minh Bạch</h3>
-              <p className="text-gray-600 text-sm">Thanh toán qua chuyển khoản ngân hàng hoặc tiền mặt. Không có bất kỳ phụ phí ẩn nào.</p>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Fixed & Transparent Pricing</h3>
+              <p className="text-gray-600 text-sm">Pay via bank transfer or cash. No hidden fees or surprises.</p>
             </div>
             <div className="text-center">
               <div className="flex justify-center mb-4">
                 <Lock className="w-12 h-12 text-orange-500" />
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Trải Nghiệm Riêng Tư 100%</h3>
-              <p className="text-gray-600 text-sm">Chỉ duy nhất nhóm của bạn trên xe. Tránh xa sự ồn ào và mệt mỏi của xe khách.</p>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">100% Private Experience</h3>
+              <p className="text-gray-600 text-sm">Only your group in the vehicle. Avoid the noise and hassle of shuttle buses.</p>
             </div>
           </div>
         </div>
@@ -272,7 +228,7 @@ export default function Home() {
       <section id="routes" className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-12 text-center">
-            Các Tuyến Khách Đi Nhiều Nhất
+            Most Popular Routes
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {displayRoutes.map((route) => (
@@ -290,7 +246,7 @@ export default function Home() {
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">{route.name}</h3>
                     <div className="flex gap-2 mb-3">
                       <span className="inline-block px-3 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">
-                        Xe Chuyên Cơ Tương Đương
+                        Private Vehicle
                       </span>
                       {route.duration && (
                         <span className="inline-block px-3 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">
@@ -301,7 +257,7 @@ export default function Home() {
                     </div>
                     <div className="flex items-center justify-between pt-3 border-t border-gray-200">
                       <span className="text-lg font-bold text-orange-500">
-                        Từ {format(route.basePrice)} / xe
+                        From {format(route.basePrice)} / car
                       </span>
                       <ChevronRight className="w-5 h-5 text-orange-500" />
                     </div>
@@ -317,7 +273,7 @@ export default function Home() {
       <section className="bg-gray-50 py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-12 text-center">
-            Cẩm Nang Du Lịch Đà Nẵng
+            Da Nang Travel Guide
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
             {blogPosts.length > 0
@@ -338,7 +294,7 @@ export default function Home() {
                         </p>
                         <h3 className="text-lg font-semibold text-gray-900 mb-3">{post.title}</h3>
                         <span className="inline-flex items-center text-orange-500 font-medium hover:text-orange-600">
-                          Xem chi tiết <ChevronRight className="w-4 h-4 ml-1" />
+                          Read more <ChevronRight className="w-4 h-4 ml-1" />
                         </span>
                       </div>
                     </div>
@@ -359,7 +315,7 @@ export default function Home() {
                         <p className="text-xs text-gray-500 mb-2">{b.date}</p>
                         <h3 className="text-lg font-semibold text-gray-900 mb-3">{b.title}</h3>
                         <span className="inline-flex items-center text-orange-500 font-medium">
-                          Xem chi tiết <ChevronRight className="w-4 h-4 ml-1" />
+                          Read more <ChevronRight className="w-4 h-4 ml-1" />
                         </span>
                       </div>
                     </div>
@@ -369,7 +325,7 @@ export default function Home() {
           <div className="text-center mt-10">
             <Link href="/blog">
               <Button variant="outline" className="border-orange-500 text-orange-500 hover:bg-orange-50">
-                Xem Tất Cả Bài Viết
+                View All Articles
               </Button>
             </Link>
           </div>
@@ -381,28 +337,28 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-4 gap-8 mb-8">
             <div>
-              <h4 className="text-white font-semibold mb-4">Công Ty</h4>
+              <h4 className="text-white font-semibold mb-4">Company</h4>
               <ul className="space-y-2 text-sm">
-                <li><a href="#" className="hover:text-white transition">Về Chúng Tôi</a></li>
-                <li><Link href="/blog" className="hover:text-white transition">Cẩm Nang</Link></li>
+                <li><a href="#" className="hover:text-white transition">About Us</a></li>
+                <li><Link href="/blog" className="hover:text-white transition">Blog</Link></li>
               </ul>
             </div>
             <div>
-              <h4 className="text-white font-semibold mb-4">Hỗ Trợ</h4>
+              <h4 className="text-white font-semibold mb-4">Support</h4>
               <ul className="space-y-2 text-sm">
-                <li><a href="#" className="hover:text-white transition">Câu Hỏi Thường Gặp</a></li>
-                <li><a href="#" className="hover:text-white transition">Chính Sách Hủy Phiếu</a></li>
+                <li><a href="#" className="hover:text-white transition">FAQ</a></li>
+                <li><a href="#" className="hover:text-white transition">Cancellation Policy</a></li>
               </ul>
             </div>
             <div>
-              <h4 className="text-white font-semibold mb-4">Pháp Lý</h4>
+              <h4 className="text-white font-semibold mb-4">Legal</h4>
               <ul className="space-y-2 text-sm">
-                <li><a href="#" className="hover:text-white transition">Bảo Mật Thông Tin</a></li>
-                <li><a href="#" className="hover:text-white transition">Điều Khoản Dịch Vụ</a></li>
+                <li><a href="#" className="hover:text-white transition">Privacy Policy</a></li>
+                <li><a href="#" className="hover:text-white transition">Terms of Service</a></li>
               </ul>
             </div>
             <div>
-              <h4 className="text-white font-semibold mb-4">Thanh Toán</h4>
+              <h4 className="text-white font-semibold mb-4">Payment Methods</h4>
               <div className="flex gap-2 flex-wrap">
                 <span className="px-2 py-1 bg-gray-800 rounded text-xs">Visa</span>
                 <span className="px-2 py-1 bg-gray-800 rounded text-xs">Mastercard</span>

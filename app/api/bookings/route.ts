@@ -78,10 +78,25 @@ export async function POST(req: Request) {
   // 3. Connect DB + fetch route & settings (Bước 2: RECALCULATE — không tin FE)
   await connectDB();
 
-  const [route, settings] = await Promise.all([
-    Route.findById(data.routeId),
-    Settings.findOne().lean(),
-  ]);
+  let route: any = null;
+  let settings: any = null;
+
+  try {
+    settings = await Settings.findOne().lean();
+    if (data.routeId === 'custom') {
+      route = {
+        _id: 'custom',
+        name: `Custom Route (Quote Request): ${data.pickupAddress} ➔ ${data.dropoffAddress}`,
+        slug: 'custom-route',
+        basePrice: 0,
+        isActive: true,
+      };
+    } else {
+      route = await Route.findById(data.routeId);
+    }
+  } catch (err) {
+    console.error('Error fetching route/settings:', err);
+  }
 
   if (!route || !route.isActive) {
     return NextResponse.json({ success: false, error: 'Route not found or inactive' }, { status: 404 });

@@ -2,10 +2,11 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { ChevronRight, Clock } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { ChevronRight, Clock, MessageCircle } from 'lucide-react';
+import { useState, useEffect, Suspense } from 'react';
 import { useCurrency } from '@/lib/context/CurrencyContext';
 import { HeaderAuth } from '@/components/HeaderAuth';
+import { useSearchParams } from 'next/navigation';
 
 interface Route {
   _id: string;
@@ -16,10 +17,16 @@ interface Route {
   images: string[];
 }
 
-export default function RoutesListingPage() {
+function RoutesListingContent() {
   const { format } = useCurrency();
+  const searchParams = useSearchParams();
   const [routes, setRoutes] = useState<Route[]>([]);
   const [loading, setLoading] = useState(true);
+
+  const pickupSearch = searchParams.get('pickup') || '';
+  const dropoffSearch = searchParams.get('dropoff') || '';
+  const dateSearch = searchParams.get('date') || '';
+  const paxSearch = searchParams.get('pax') || '1';
 
   useEffect(() => {
     setLoading(true);
@@ -60,26 +67,16 @@ export default function RoutesListingPage() {
   ];
 
   const displayRoutes = routes.length > 0 ? routes : fallbackRoutes;
+  const hasSearch = pickupSearch || dropoffSearch;
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-          <Link href="/" className="text-2xl font-bold text-gray-900">Thuê Xe Đà Nẵng</Link>
-          <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-gray-600">
-            <Link href="/" className="hover:text-orange-500">Trang Chủ</Link>
-            <Link href="/routes" className="text-orange-500">Bảng Giá</Link>
-            <HeaderAuth />
-          </nav>
-        </div>
-      </header>
 
-      {/* Hero */}
+
       <div className="bg-gray-900 text-white py-16 px-4 text-center">
-        <h1 className="text-4xl font-bold mb-4">Danh Sách Tuyến Xe & Bảng Giá</h1>
+        <h1 className="text-4xl font-bold mb-4">Transfer Routes & Pricing</h1>
         <p className="text-gray-300 max-w-xl mx-auto">
-          Khám phá các dịch vụ xe riêng tư, chất lượng cao với mức giá cố định, minh bạch trên toàn Miền Trung.
+          Explore high-quality private car services with fixed and transparent pricing across Central Vietnam.
         </p>
       </div>
 
@@ -91,6 +88,42 @@ export default function RoutesListingPage() {
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            {/* Custom Route Card (if searched) */}
+            {hasSearch && (
+              <Link href={`/checkout?routeId=custom&routeName=Xe+Riêng:+${encodeURIComponent(pickupSearch || 'Điểm Đón')}+-+${encodeURIComponent(dropoffSearch || 'Điểm Đến')}&pax=${paxSearch}` + (dateSearch ? `&date=${dateSearch.split('T')[0]}&time=${dateSearch.split('T')[1]}` : '')}>
+                <div className="bg-orange-50 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition border-2 border-orange-400 cursor-pointer h-full flex flex-col relative">
+                  <div className="absolute top-2 right-2 bg-orange-500 text-white text-xs font-bold px-2 py-1 rounded z-10">
+                    Custom Route
+                  </div>
+                  <div className="relative h-48 w-full">
+                    <Image
+                      src="https://images.unsplash.com/photo-1494515843206-f3117d3f51b7?w=800&q=80"
+                      alt="Custom Transfer"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="p-4 flex flex-col flex-1">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2 flex-1">
+                      {pickupSearch || 'Pickup'} ➔ {dropoffSearch || 'Dropoff'}
+                    </h3>
+                    <div className="flex gap-2 mb-3">
+                      <span className="inline-block px-3 py-1 bg-white text-gray-700 text-xs font-medium rounded-full border border-orange-200">
+                        Private Vehicle
+                      </span>
+                    </div>
+                    <div className="flex items-center justify-between pt-3 border-t border-orange-200 mt-auto">
+                      <span className="text-lg font-bold text-orange-600 flex items-center gap-1">
+                        <MessageCircle className="w-5 h-5" /> Quote Request
+                      </span>
+                      <ChevronRight className="w-5 h-5 text-orange-600" />
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            )}
+
             {displayRoutes.map((route) => (
               <Link key={route._id} href={`/routes/${route.slug}`}>
                 <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition border border-gray-200 cursor-pointer h-full flex flex-col">
@@ -106,7 +139,7 @@ export default function RoutesListingPage() {
                     <h3 className="text-lg font-semibold text-gray-900 mb-2 flex-1">{route.name}</h3>
                     <div className="flex gap-2 mb-3">
                       <span className="inline-block px-3 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">
-                        Xe Chuyên Cơ Tương Đương
+                        Private Vehicle
                       </span>
                       {route.duration && (
                         <span className="inline-block px-3 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">
@@ -117,7 +150,7 @@ export default function RoutesListingPage() {
                     </div>
                     <div className="flex items-center justify-between pt-3 border-t border-gray-200 mt-auto">
                       <span className="text-lg font-bold text-orange-500">
-                        Từ {format(route.basePrice)} / xe
+                        From {format(route.basePrice)} / car
                       </span>
                       <ChevronRight className="w-5 h-5 text-orange-500" />
                     </div>
@@ -129,5 +162,13 @@ export default function RoutesListingPage() {
         )}
       </main>
     </div>
+  );
+}
+
+export default function RoutesListingPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="animate-spin w-8 h-8 border-4 border-orange-500 border-t-transparent rounded-full" /></div>}>
+      <RoutesListingContent />
+    </Suspense>
   );
 }

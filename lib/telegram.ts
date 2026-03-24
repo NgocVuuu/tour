@@ -4,8 +4,11 @@ function formatTelegramMessage(booking: IBooking): string {
   const statusEmoji = '🔔';
   const carEmoji = booking.carsRequired > 1 ? '🚗🚗' : '🚗';
 
-  return `${statusEmoji} *NEW BOOKING — ${booking.bookingCode}*
+  const title = booking.routeId?.toString() === 'custom' 
+    ? `*🚨 YÊU CẦU BÁO GIÁ — ${booking.bookingCode}*` 
+    : `*NEW BOOKING — ${booking.bookingCode}*`;
 
+  return `${statusEmoji} ${title}
 👤 *Customer:* ${booking.customerName}
 📱 *WhatsApp:* ${booking.whatsapp}
 📧 *Email:* ${booking.email}

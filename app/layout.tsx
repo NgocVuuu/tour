@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
   openGraph: {
     title: 'DaNang Private Transfer — Airport & City Transfers',
-    description: 'Dịch vụ xe riêng đưa đón sân bay và tham quan miền Trung chuyên nghiệp, giá rẻ.',
+    description: 'Professional and affordable private car transfers for Da Nang airport and Central Vietnam tours.',
     url: 'https://tour-ngocvuuus-projects.vercel.app/',
     siteName: 'DaNang Private Transfer',
     images: ['https://photo-link-talk.zadn.vn/photolinkv2/720/zlv27e944c52fc1774356013aHR0cHM6Ly9yZXMtemFsby56YWRuLnZuL3VwbG9hZC9tZWRpYS8yMDE5LzEwLzE1L2ZlZWRfdGh1bWJfbGlua19fMV9fMTU3MTEzMzEyMjc3OF85Mzc4MC5wbmc='],
@@ -29,6 +29,8 @@ export const metadata: Metadata = {
   },
 }
 
+import { Navbar } from '@/components/Navbar';
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -38,6 +40,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} antialiased`}>
         <Providers>
+          <Navbar />
           {children}
         </Providers>
         <Analytics />

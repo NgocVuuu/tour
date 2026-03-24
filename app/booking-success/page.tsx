@@ -25,26 +25,30 @@ function BookingSuccessContent() {
         </div>
 
         <h1 className="text-4xl sm:text-5xl font-bold text-center text-gray-900 mb-3">
-          Đặt Xe Thành Công!
+          Booking Successful!
         </h1>
         <p className="text-center text-lg text-gray-600 mb-3">
-          Mã số phiếu đặt xe (Booking) của bạn là{' '}
+          Your booking reference code is{' '}
           <span className="font-semibold text-orange-500 text-xl">{bookingCode}</span>
         </p>
-        {total && (
+        {total && Number(total) > 0 ? (
           <p className="text-center text-gray-600 mb-8">
-            Tổng phí: <span className="font-bold text-gray-900">{total} {currency}</span>
+            Total fee: <span className="font-bold text-gray-900">{total} {currency}</span>
+          </p>
+        ) : (
+          <p className="text-center text-orange-600 font-medium mb-8">
+            Waiting for our operator to contact you with a quote for this custom route.
           </p>
         )}
 
         {/* Next Steps */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 mb-8">
-          <h2 className="text-xl font-semibold text-gray-900 mb-6">Quy trình tiếp theo sẽ diễn ra như thế nào?</h2>
+          <h2 className="text-xl font-semibold text-gray-900 mb-6">What happens next?</h2>
           <ul className="space-y-4">
             {[
-              'Nhân viên điều hành sẽ kiểm tra lộ trình và chốt lịch xe cho bạn trong vòng tối đa 30 phút.',
-              'Một Email xác nhận lộ trình và thông tin tài xế sẽ được tự động gửi qua thư điện tử.',
-              'Trước giờ đi, tài xế sẽ gọi điện thoại hoặc đón bạn tận nơi tại điểm hẹn với biển đón (nếu tại Sân bay).',
+              'Our operator will review your route and confirm your car within 30 minutes.',
+              'An email with route confirmation and driver details will be sent to you.',
+              'Before departure, the driver will call you or pick you up at the meeting point with a name board.',
             ].map((step, i) => (
               <li key={i} className="flex gap-4">
                 <span className="flex-shrink-0 w-6 h-6 rounded-full bg-orange-500 text-white flex items-center justify-center text-sm font-semibold">
@@ -58,20 +62,20 @@ function BookingSuccessContent() {
 
         {/* WhatsApp CTA */}
         <a
-          href={`https://wa.me/${whatsappNumber}?text=Chào bạn!%20Mã%20đặt%20xe%20của%20mình%20là%20${bookingCode}`}
+          href={`https://wa.me/${whatsappNumber}?text=Hello!%20My%20booking%20code%20is%20${bookingCode}`}
           target="_blank"
           rel="noopener noreferrer"
           className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-4 px-6 rounded-lg flex items-center justify-center gap-3 transition duration-200 shadow-sm hover:shadow-md mb-4 block"
         >
           <MessageCircle className="w-5 h-5" />
-          Nhấn Để Xác Nhận Nhanh Qua Zalo / WhatsApp (24/7)
+          Click to Confirm via WhatsApp/Zalo (24/7)
         </a>
-        <p className="text-center text-sm text-gray-500 mb-6">Đội ngũ điều hành luôn hỗ trợ khách 24/24</p>
+        <p className="text-center text-sm text-gray-500 mb-6">Our operations team is available 24/7 to assist you</p>
 
         <Link href="/" className="block">
           <Button variant="outline" className="w-full py-3 text-gray-700 border-gray-300 hover:bg-gray-50">
             <Home className="w-4 h-4 mr-2" />
-            Trở về Trang Chủ Trực Tuyến
+            Return to Homepage
           </Button>
         </Link>
       </div>

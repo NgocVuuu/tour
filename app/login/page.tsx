@@ -63,7 +63,7 @@ export default function LoginPage() {
       setStep('otp');
     } catch (err: any) {
       console.error(err);
-      setError('Gửi mã OTP thất bại. Vui lòng kiểm tra lại số điện thoại.');
+      setError('Failed to send OTP. Please check your phone number.');
       if ((window as any).recaptchaVerifier) {
         (window as any).recaptchaVerifier.clear();
         (window as any).recaptchaVerifier = null;
@@ -89,13 +89,13 @@ export default function LoginPage() {
       });
 
       if (signInResult?.error) {
-        setError('Xác thực thất bại trên máy chủ.');
+        setError('Server authentication failed.');
       } else {
         router.push('/dashboard');
       }
     } catch (err: any) {
       console.error(err);
-      setError('Mã OTP không hợp lệ, vui lòng thử lại.');
+      setError('Invalid OTP code, please try again.');
     } finally {
       setLoading(false);
     }
@@ -108,23 +108,23 @@ export default function LoginPage() {
       <header className="bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center">
           <Link href="/" className="text-gray-500 hover:text-gray-900 transition flex items-center gap-2">
-            <ArrowLeft className="w-5 h-5" /> Trang Chủ
+            <ArrowLeft className="w-5 h-5" /> Home
           </Link>
         </div>
       </header>
 
-      <div className="flex-1 flex flex-col items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
-        <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+      <div className="flex-1 flex flex-col items-center justify-center px-4 py-8 sm:py-12 sm:px-6 lg:px-8">
+        <div className="max-w-md w-full space-y-6 sm:space-y-8 bg-white p-6 sm:p-8 rounded-2xl sm:rounded-xl shadow-xl sm:shadow-lg border border-gray-100">
           <div className="text-center">
             <h2 className="text-3xl font-extrabold text-gray-900">
-              {step === 'options' && 'Đăng Nhập Khách Hàng'}
-              {step === 'phone' && 'Nhập Số Điện Thoại'}
-              {step === 'otp' && 'Xác Nhận Mã OTP'}
+              {step === 'options' && 'Customer Login'}
+              {step === 'phone' && 'Enter Phone Number'}
+              {step === 'otp' && 'Confirm OTP'}
             </h2>
             <p className="mt-2 text-sm text-gray-600">
-              {step === 'options' && 'Quản lý các chuyến đi và lưu trữ thông tin thanh toán của bạn'}
-              {step === 'phone' && 'Chúng tôi sẽ gửi một mã OTP qua tin nhắn SMS'}
-              {step === 'otp' && `Mã gồm 6 chữ số đã được gửi tới ${phone}`}
+              {step === 'options' && 'Manage your trips and store payment information'}
+              {step === 'phone' && 'We will send an OTP code via SMS'}
+              {step === 'otp' && `A 6-digit code has been sent to ${phone}`}
             </p>
           </div>
           
@@ -142,7 +142,7 @@ export default function LoginPage() {
                   className="w-full flex items-center justify-center gap-3 bg-gray-900 border border-transparent text-white hover:bg-gray-800 h-12"
                 >
                   <Phone className="w-5 h-5" />
-                  Đăng nhập với Số Điện Thoại (SMS)
+                  Login with Phone Number (SMS)
                 </Button>
 
                 <div className="relative my-6">
@@ -150,7 +150,7 @@ export default function LoginPage() {
                     <div className="w-full border-t border-gray-300"></div>
                   </div>
                   <div className="relative flex justify-center text-sm">
-                    <span className="px-2 bg-white text-gray-500">Hoặc tiếp tục với</span>
+                    <span className="px-2 bg-white text-gray-500">Or continue with</span>
                   </div>
                 </div>
             {/* Google Login */}
@@ -164,7 +164,7 @@ export default function LoginPage() {
                 <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
                 <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
               </svg>
-              Đăng nhập với Google
+              Login with Google
             </Button>
 
             {/* Zalo Login */}
@@ -175,7 +175,7 @@ export default function LoginPage() {
               <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
                 <path d="M21.166 4.672C19.7 2.5 16.518 1 11.96 1 4.7 1 1 5.352 1 10.264c0 3.1 1.576 6.068 4.86 8.01a.333.333 0 01.144.372l-.766 2.686c-.056.195.158.35.318.251l3.525-2.227a.332.332 0 01.3-.016c1 .461 2.457.818 3.974.818C20 20.158 23 16.035 23 10.264c0-2.31-.692-4.223-1.834-5.592zm-8.8 6.784H9.422a.377.377 0 01-.365-.286l-.287-1.077c-.035-.13-.017-.266.046-.38a.36.36 0 01.32-.18h2.95c.19 0 .346.162.346.36v.054c0 .2-.155.362-.345.362h-1.63L11.516 11.4h.85c.19 0 .346.162.346.362v.053c0 .2-.156.36-.346.36zm4.98-1.564a.366.366 0 01.196.223h.001l.377 1.157a.37.37 0 01-.137.408.349.349 0 01-.424-.035l-1.99-1.67v.465c0 .198-.157.36-.347.36v0c-.19 0-.347-.162-.347-.36V9.034c0-.198.156-.36.347-.36v0c.19 0 .347.162.347.36v1.442l1.638-1.683a.36.36 0 01.488-.04l.019.014a.377.377 0 01.106.5l-1.127 1.34h0l.855.849zM5.96 11.458h-.022A1.912 1.912 0 014.05 9.54V9.52c0-1.053.844-1.92 1.888-1.92s1.888.867 1.888 1.92v.022a1.912 1.912 0 01-1.866 1.916zm.012-3.111c-.655 0-1.2.53-1.2 1.18v.011c0 .653.545 1.183 1.2 1.183.656 0 1.201-.53 1.201-1.183v-.01c0-.65-.545-1.18-1.2-1.18z"/>
               </svg>
-              Đăng nhập với Zalo
+              Login with Zalo
             </Button>
             </>
             )}
@@ -186,16 +186,16 @@ export default function LoginPage() {
                   type="tel" 
                   value={phone} 
                   onChange={(e) => setPhone(e.target.value)} 
-                  placeholder="VD: 0905 123 456" 
+                  placeholder="Ex: +84 905 123 456" 
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg text-lg focus:ring-2 focus:ring-orange-500"
                   required
                 />
                 <Button type="submit" disabled={loading || !phone} className="w-full bg-orange-500 hover:bg-orange-600 text-white h-12 text-lg font-medium">
-                  {loading ? 'Đang gửi...' : 'Gửi Mã Xác Nhận'}
+                  {loading ? 'Sending...' : 'Send OTP Code'}
                 </Button>
                 <div className="text-center mt-2">
                   <button type="button" onClick={() => setStep('options')} className="text-sm text-gray-500 hover:text-gray-800 underline">
-                    Quay lại
+                    Back
                   </button>
                 </div>
               </form>
@@ -207,17 +207,17 @@ export default function LoginPage() {
                   type="text" 
                   value={otp} 
                   onChange={(e) => setOtp(e.target.value)} 
-                  placeholder="Nhập mã 6 chữ số..." 
+                  placeholder="Enter 6-digit code..." 
                   maxLength={6}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg text-2xl tracking-[0.5em] text-center focus:ring-2 focus:ring-orange-500"
                   required
                 />
                 <Button type="submit" disabled={loading || otp.length < 6} className="w-full bg-green-500 hover:bg-green-600 text-white h-12 text-lg font-medium">
-                  {loading ? 'Đang kiểm tra...' : 'Xác Nhận Đăng Nhập'}
+                  {loading ? 'Verifying...' : 'Confirm Login'}
                 </Button>
                 <div className="text-center mt-2">
                   <button type="button" onClick={() => { setStep('phone'); setOtp(''); }} className="text-sm text-gray-500 hover:text-gray-800 underline">
-                    Gửi lại mã / Đổi số ĐT
+                    Resend Code / Change Phone
                   </button>
                 </div>
               </form>
@@ -225,14 +225,17 @@ export default function LoginPage() {
           </div>
 
           <div className="mt-6 text-center text-xs text-gray-500">
-            Bằng việc đăng nhập, bạn đồng ý với Điều Khoản Dịch Vụ và <br/> Chính Sách Bảo Mật của Thuê Xe Đà Nẵng
+            By logging in, you agree to the Terms of Service and <br/> Privacy Policy of DaNang Private Transfer
           </div>
         </div>
 
-        {/* Support floating banner on Desktop */}
-        <div className="mt-8 text-center sm:text-left">
-          <p className="text-gray-500 flex items-center gap-2 justify-center">
-            Bạn cần hỗ trợ? <a href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '84905555555'}`} className="text-orange-500 hover:underline flex items-center gap-1 font-medium"><MessageCircle className="w-4 h-4"/> Zalo / WhatsApp CSKH 24/7</a>
+        {/* Support Section */}
+        <div className="mt-8 text-center">
+          <p className="text-gray-500 text-sm flex flex-col sm:flex-row items-center justify-center gap-2">
+            <span>Need help?</span>
+            <a href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '84905555555'}`} className="text-orange-500 hover:underline inline-flex items-center gap-1.5 font-medium bg-orange-50 sm:bg-transparent px-4 py-2 sm:p-0 rounded-full">
+              <MessageCircle className="w-4 h-4"/> 24/7 WhatsApp / Zalo Support
+            </a>
           </p>
         </div>
       </div>

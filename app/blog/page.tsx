@@ -52,23 +52,13 @@ export default function BlogListingPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-          <Link href="/" className="text-2xl font-bold text-gray-900">Thuê Xe Đà Nẵng</Link>
-          <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-gray-600">
-            <Link href="/" className="hover:text-orange-500">Trang Chủ</Link>
-            <Link href="/blog" className="text-orange-500">Cẩm Nang</Link>
-            <HeaderAuth />
-          </nav>
-        </div>
-      </header>
+
 
       {/* Hero */}
       <div className="bg-gray-900 text-white py-16 px-4 text-center">
-        <h1 className="text-4xl font-bold mb-4">Cẩm Nang Du Lịch Đà Nẵng</h1>
+        <h1 className="text-4xl font-bold mb-4">Da Nang Travel Guide</h1>
         <p className="text-gray-300 max-w-xl mx-auto">
-          Kinh nghiệm du lịch Đà Nẵng, ẩm thực, văn hóa và bí kíp di chuyển.
+          Da Nang travel tips, food, culture, and transportation guides.
         </p>
       </div>
 
@@ -100,7 +90,7 @@ export default function BlogListingPage() {
                       <h2 className="text-lg font-semibold text-gray-900 mb-2 flex-1">{post.title}</h2>
                       {post.excerpt && <p className="text-sm text-gray-600 mb-4 line-clamp-2">{post.excerpt}</p>}
                       <span className="inline-flex items-center text-orange-500 font-medium text-sm mt-auto">
-                        Xem chi tiết <ChevronRight className="w-4 h-4 ml-1" />
+                        Read more <ChevronRight className="w-4 h-4 ml-1" />
                       </span>
                     </div>
                   </article>
@@ -116,17 +106,17 @@ export default function BlogListingPage() {
                   disabled={page === 1}
                   className="px-4 py-2 border border-gray-300 rounded-lg disabled:opacity-40 hover:bg-gray-50 text-sm"
                 >
-                  ← Trang Trước
+                  ← Previous Page
                 </button>
                 <span className="px-4 py-2 text-sm text-gray-600">
-                  Trang {pagination.page} / {pagination.totalPages}
+                  Page {pagination.page} / {pagination.totalPages}
                 </span>
                 <button
                   onClick={() => setPage(p => Math.min(pagination.totalPages, p + 1))}
                   disabled={page === pagination.totalPages}
                   className="px-4 py-2 border border-gray-300 rounded-lg disabled:opacity-40 hover:bg-gray-50 text-sm"
                 >
-                  Trang Sau →
+                  Next Page →
                 </button>
               </div>
             )}

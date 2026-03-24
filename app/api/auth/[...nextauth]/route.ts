@@ -3,7 +3,7 @@ import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { MongoDBAdapter } from '@auth/mongodb-adapter';
 import clientPromise from '@/lib/mongodbClient';
-import { adminAuth } from '@/lib/firebase-admin';
+import { getAdminAuth } from '@/lib/firebase-admin';
 import connectDB from '@/lib/mongodb';
 import { User } from '@/lib/models/User';
 
@@ -47,6 +47,7 @@ export const authOptions: NextAuthOptions = {
         if (!credentials?.idToken) return null;
         try {
           // Decode the Firebase JWT
+          const adminAuth = getAdminAuth();
           const decodedToken = await adminAuth.verifyIdToken(credentials.idToken);
           const phoneNumber = decodedToken.phone_number;
           if (!phoneNumber) return null;
