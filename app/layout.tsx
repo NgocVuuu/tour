@@ -15,6 +15,11 @@ export const metadata: Metadata = {
     'Private car transfers in Da Nang, Vietnam. Airport to Hoi An, Ba Na Hills, and more. English-speaking drivers, fixed prices, no hidden fees.',
   keywords: ['Da Nang transfer', 'Hoi An private car', 'Da Nang airport taxi', 'Vietnam transfer'],
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
+  openGraph: {
+    title: 'DaNang Private Transfer — Airport & City Transfers',
+    description: 'Private car transfers in Da Nang, Vietnam. Airport to Hoi An, Ba Na Hills, and more.',
+    images: ['/og-image.jpg'], // Make sure to have this file in public folder or use a remote URL
+  },
   verification: {
     other: {
       'zalo-platform-site-verification': ['VD-K2ulN4WzPzPqJfU8R6dFfkp6VdsvlDJKv'],
