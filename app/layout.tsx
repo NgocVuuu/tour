@@ -17,8 +17,8 @@ export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
   openGraph: {
     title: 'DaNang Private Transfer — Airport & City Transfers',
-    description: 'Private car transfers in Da Nang, Vietnam. Airport to Hoi An, Ba Na Hills, and more.',
-    images: ['/og-image.jpg'], // Make sure to have this file in public folder or use a remote URL
+    description: 'Dịch vụ xe riêng đưa đón sân bay và tham quan miền Trung chuyên nghiệp, giá rẻ.',
+    images: ['https://photo-link-talk.zadn.vn/photolinkv2/720/zlv27e944c52fc1774356013aHR0cHM6Ly9yZXMtemFsby56YWRuLnZuL3VwbG9hZC9tZWRpYS8yMDE5LzEwLzE1L2ZlZWRfdGh1bWJfbGlua19fMV9fMTU3MTEzMzEyMjc3OF85Mzc4MC5wbmc='],
   },
   verification: {
     other: {
