@@ -18,6 +18,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'DaNang Private Transfer — Airport & City Transfers',
     description: 'Dịch vụ xe riêng đưa đón sân bay và tham quan miền Trung chuyên nghiệp, giá rẻ.',
+    url: 'https://tour-ngocvuuus-projects.vercel.app/',
+    siteName: 'DaNang Private Transfer',
     images: ['https://photo-link-talk.zadn.vn/photolinkv2/720/zlv27e944c52fc1774356013aHR0cHM6Ly9yZXMtemFsby56YWRuLnZuL3VwbG9hZC9tZWRpYS8yMDE5LzEwLzE1L2ZlZWRfdGh1bWJfbGlua19fMV9fMTU3MTEzMzEyMjc3OF85Mzc4MC5wbmc='],
   },
   verification: {
