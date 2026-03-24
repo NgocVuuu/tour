@@ -54,9 +54,3 @@ export async function POST(req: NextRequest) {
   }
 }
 
-// Tăng giới hạn body size cho Next.js (mặc định 4MB)
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
